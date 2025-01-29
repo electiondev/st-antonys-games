@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Add Football Score</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-6 w-96">
+        <h1 class="text-xl font-bold text-center text-blue-600 mb-4">Add a New Score</h1>
+
+        <form id="score-form" class="space-y-4">
+            <div>
+                <label class="block text-gray-700">Team A</label>
+                <input type="text" id="teamA" required class="w-full border p-2 rounded-md">
+            </div>
+
+            <div>
+                <label class="block text-gray-700">Score A</label>
+                <input type="number" id="scoreA" required class="w-full border p-2 rounded-md">
+            </div>
+
+            <div>
+                <label class="block text-gray-700">Team B</label>
+                <input type="text" id="teamB" required class="w-full border p-2 rounded-md">
+            </div>
+
+            <div>
+                <label class="block text-gray-700">Score B</label>
+                <input type="number" id="scoreB" required class="w-full border p-2 rounded-md">
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
+                Submit Score
+            </button>
+        </form>
+
+        <a href="index.html" class="block text-center text-blue-500 mt-4 hover:underline">Back to Leaderboard</a>
+    </div>
+</body>
+
+</html>
