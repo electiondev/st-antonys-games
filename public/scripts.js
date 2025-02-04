@@ -1,20 +1,44 @@
+console.log("🚀 scripts.js is loaded");  // Debug if script is running
+
 // Import Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+import { getAnalytics } from "firebase/analytics";
 import { getFirestore, collection, getDocs, addDoc, orderBy, query } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
-// Firebase Configuration (Replace with Your Firebase Config)
+console.log("📢 Firebase SDK loaded!");  // Debug Firebase import
+
+// Firebase Configuration
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAyPyMnjguGoNJ7LU8hA5utirT3aH_pyL4",
+  authDomain: "st-antonys-games.firebaseapp.com",
+  projectId: "st-antonys-games",
+  storageBucket: "st-antonys-games.firebasestorage.app",
+  messagingSenderId: "30280850548",
+  appId: "1:30280850548:web:0a007861c16471ba210521",
+  measurementId: "G-BHCC5T3YWF"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+console.log("Firebase Initialized:", app);
+
 const db = getFirestore(app);
+console.log("Firestore Connected:", db);
+
+// Test Firestore Read
+async function testFirestoreConnection() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "scores"));
+        console.log("Firestore Read Test Successful:", querySnapshot.docs.length, "documents found.");
+        querySnapshot.forEach(doc => {
+            console.log(doc.id, "=>", doc.data());
+        });
+    } catch (error) {
+        console.error("Firestore Read Test Failed:", error);
+    }
+}
+testFirestoreConnection();
+
 
 // =======================
 // 📌 FETCH AND DISPLAY SCORES (index.html)
@@ -27,6 +51,7 @@ async function fetchScores() {
     // Query Firestore and order by timestamp
     const q = query(collection(db, "scores"), orderBy("timestamp", "desc"));
     const querySnapshot = await getDocs(q);
+
 
     scoresTable.innerHTML = `
         <tr class="bg-blue-200">
