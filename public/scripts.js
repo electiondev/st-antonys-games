@@ -43,6 +43,8 @@ testFirestoreConnection();
 // 📌 FETCH AND DISPLAY SCORES (index.html)
 // =======================
 async function fetchScores() {
+    console.log("📥 Fetching scores from Firestore...");
+
     const scoresTable = document.getElementById("scores-table");
     const leaderboardTable = document.getElementById("leaderboard-table");
     let leaderboard = {};
@@ -51,7 +53,15 @@ async function fetchScores() {
     const q = query(collection(db, "scores"), orderBy("timestamp", "desc"));
     const querySnapshot = await getDocs(q);
 
+    console.log(`📊 Found ${querySnapshot.size} scores.`); // Debug
 
+    if (querySnapshot.empty) {
+        console.log("⚠️ No scores found in Firestore.");
+        scoresTable.innerHTML += `<tr><td colspan="4">No scores yet.</td></tr>`;
+        return;
+    }
+
+    // Reset table
     scoresTable.innerHTML = `
         <tr class="bg-blue-200">
             <th class="border px-4 py-2">Team A</th>
@@ -63,6 +73,7 @@ async function fetchScores() {
 
     querySnapshot.forEach((doc) => {
         let data = doc.data();
+        console.log("📄 Score Entry:", data); // Debug
 
         // Add row to scores table
         scoresTable.innerHTML += `
@@ -82,11 +93,15 @@ async function fetchScores() {
         }
     });
 
+    console.log("🏆 Leaderboard Data:", leaderboard); // Debug
+
     // Display leaderboard data
     leaderboardTable.innerHTML = `
         <tr class="bg-green-200">
             <th class="border px-4 py-2">Team</th>
-            <th class="border px-4 py-2">Wins</th>
+            <th class="border px-4 py-2">Wins
+
+</th>
         </tr>
     `;
     Object.keys(leaderboard).forEach(team => {
@@ -97,6 +112,8 @@ async function fetchScores() {
             </tr>
         `;
     });
+
+    console.log("✅ Leaderboard updated successfully.");
 }
 
 // Call fetchScores if on index.html
