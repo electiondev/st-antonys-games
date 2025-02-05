@@ -2,7 +2,6 @@ console.log("🚀 scripts.js is loaded");  // Debug if script is running
 
 // Import Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getAnalytics } from "firebase/analytics";
 import { getFirestore, collection, getDocs, addDoc, orderBy, query } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
 console.log("📢 Firebase SDK loaded!");  // Debug Firebase import
