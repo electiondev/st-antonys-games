@@ -6,7 +6,8 @@
   <h1 class="text-3xl font-bold text-blue-600 my-4">Football Scores Leaderboard</h1>
 
   <h2 class="text-xl font-semibold">Game Scores</h2>
-  <table class="table-auto border-collapse border border-gray-400 mx-auto my-4">
+
+  <table id="scores-table" class="table-auto border-collapse border border-gray-400 mx-auto my-4">
     <tr class="bg-blue-200">
       <th class="border border-gray-400 px-4 py-2">Team A</th>
       <th class="border border-gray-400 px-4 py-2">Team B</th>
@@ -15,8 +16,17 @@
     </tr>
   </table>
 
+  <h2 class="text-xl font-semibold mt-6">Leaderboard</h2>
+
+  <table id="leaderboard-table" class="table-auto border-collapse border border-gray-400 mx-auto my-4">
+    <tr class="bg-green-200">
+      <th class="border border-gray-400 px-4 py-2">Team</th>
+      <th class="border border-gray-400 px-4 py-2">Wins</th>
+    </tr>
+  </table>
+
   <a href="add-score.html" class="block mt-4 text-blue-500 hover:underline">Add New Score</a>
+
   <!-- JavaScript Module -->
   <script type="module" src="scripts.js"></script>
-
 </body>
